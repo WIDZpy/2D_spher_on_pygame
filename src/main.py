@@ -3,7 +3,7 @@ import pygame as pg
 
 
 class Sphere:
-	def __init__(self, window, distance, color1=None, color2=None, shape=(100, 100), width=1):
+	def __init__(self, window, distance, color1=None, color2=None, shape=(300, 300), width=1):
 		self.color1 = [255, 255, 255] if color1 is None else color1
 		self.color2 = [255, 255, 255] if color2 is None else color2
 		self.shape = shape
