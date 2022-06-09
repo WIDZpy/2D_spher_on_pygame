@@ -23,9 +23,16 @@ class Sphere:
 			ca = mt.cos(angle) * cb
 			b = (self.position[0] + ca-2, self.position[1] + ba)
 			bprime = (self.position[0] - ca+1, self.position[1] + ba)
-			print(cb, ba, ca, b, bprime)
+			# print(cb, ba, ca, b, bprime)
 			pg.draw.aaline(self.win, self.color2, b, bprime)
 
+	def draw_meridian(self, repetition=range(0, 90, 5)):
+		for angle in repetition:
+			angle = mt.radians(angle)
+			de = 2 * (mt.sin(angle) * self.sphere_shape/2)
+			pg.draw.ellipse(self.win, self.color2, (self.winsize[0]/2 - de/2, self.winsize[1]/2 - self.sphere_shape/2,
+													de, self.sphere_shape), self.width)
+			print(de, self.width, self.winsize)
 
 if __name__ == '__main__':
 	run = True
@@ -36,6 +43,7 @@ if __name__ == '__main__':
 	spher = Sphere(win, 100)
 
 	spher.draw_parallel(range(-90, 90, 7))
+	spher.draw_meridian(range(0, 90, 7))
 	while run:
 		# pg.time.delay(16)  # 33ms ~= 30fps | 16ms ~= 60fps | multi-threading and gpu accel to be made, might not be needed
 		if pg.event.get(pg.QUIT):
